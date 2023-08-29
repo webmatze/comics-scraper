@@ -20,21 +20,29 @@ A versatile and user-friendly bash script that scrapes and downloads comics from
 
 ## Usage
 
-By default, the script targets the imaginary `https://readallfreecomics.com/` and uses a set of default selectors to locate and download the comics. However, you can customize these settings by providing additional arguments.
-
-You can run the script as follows:
-
-```
-./comics_scraper.sh <base_url> <post_selector> <image_selector> <next_page_selector> <base_download_path>
+The script can be used with the following command:
+```bash
+./comics_scraper.sh [OPTIONS]
 ```
 
-- `base_url`: The URL of the website from where to scrape the comics.
-- `post_selector`: The CSS selector to fetch the URLs of the posts.
-- `image_selector`: The CSS selector to fetch the image URLs on the post page.
-- `next_page_selector`: The CSS selector to fetch the URL of the next page.
-- `base_download_path`: The base path where the .cbz files will be saved.
+### Options
 
-If no arguments are provided, the script will use the default values. 
+- -u, --url URL: Specify the base URL to scrape comics from (mandatory).
+- -p, --post-selector SELECTOR: Specify the CSS selector to extract post URLs (default: #post-area .post > center a attr{href}).
+- -i, --image-selector SELECTOR: Specify the CSS selector to extract image URLs (default: center center div img[style*="max-width"] attr{src}).
+- -d, --download-path PATH: Specify the base download path (default: data).
+- -v, --verbose: Show verbose output.
+- -h, --help: Show the help message.
+
+### Example usage
+By default, the script uses a set of default selectors to locate and download the comics.
+```bash
+./comics_scraper.sh -u https://readallfreecomics.com/
+```
+However, you can customize these settings by providing additional arguments.
+```bash
+./comics_scraper.sh -u https://readallfreecomics.com/ -p "#post-area .post > center a attr{href}" -i "center center div img[style*=\"max-width\"] attr{src}" -d data -v
+```
 
 ## Disclaimer
 
